@@ -2,420 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TENDOLLARS - Win Big Daily!</title>
+  <title>Login - TENDOLLARS</title>
   <style>
-    /* Import a modern font */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-    /* Reset and base styles */
-    * {
-      box-sizing: border-box;
-    }
     body {
-      margin: 0;
-      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at top, #1b1b1b, #0a0a0a);
-      color: #f0f0f0;
+      background: #111;
+      color: white;
+      font-family: sans-serif;
       text-align: center;
-      overflow-x: hidden;
-      line-height: 1.5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 0 15px 40px;
+      padding: 40px;
     }
-
-    /* Header */
-    header {
-      background: linear-gradient(90deg, #ffdd55, #ff9f1c);
-      padding: 30px 0;
-      font-size: 3.2rem;
+    input {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      width: 250px;
+    }
+    button {
+      padding: 10px 25px;
+      background: gold;
+      border: none;
+      border-radius: 20px;
+      margin-top: 15px;
+      cursor: pointer;
       font-weight: 700;
-      color: #222;
-      text-shadow: 0 0 12px #fff1a8;
-      letter-spacing: 2px;
-      animation: neonGlow 3s ease-in-out infinite alternate;
-      user-select: none;
+      transition: background 0.3s ease;
     }
-    @keyframes neonGlow {
-      0%, 100% {
-        text-shadow:
-          0 0 7px #ffed85,
-          0 0 15px #ffed85,
-          0 0 20px #ff9f1c,
-          0 0 40px #ff9f1c;
-      }
-      50% {
-        text-shadow:
-          0 0 10px #fff36c,
-          0 0 25px #fff36c,
-          0 0 35px #ff7b00,
-          0 0 50px #ff7b00;
-      }
+    button:hover {
+      background: #ffaa00;
     }
-
-    /* Navigation */
     nav {
-      background: #121212;
-      box-shadow: inset 0 -3px 10px rgb(255 153 0 / 0.3);
-      padding: 15px 0;
-      font-weight: 600;
+      background: #111;
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 30px;
     }
     nav a {
-      color: #ffbe2e;
-      margin: 0 14px;
-      font-size: 1.15rem;
+      color: gold;
+      margin: 0 10px;
       text-decoration: none;
-      padding: 8px 20px;
-      border-radius: 30px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 2px rgb(255 190 46 / 0.7);
-      display: inline-block;
-      min-width: 90px;
-      font-weight: 700;
-      user-select: none;
-    }
-    nav a:hover,
-    nav a:focus {
-      color: #ff7a00;
-      background: rgba(255, 190, 46, 0.18);
-      box-shadow: 0 0 14px #ff7a00;
-      outline: none;
-      transform: scale(1.1);
-    }
-
-    /* Ticker */
-    .ticker {
-      background: #1c1c1c;
-      border: 1.5px solid #ffb600;
-      padding: 10px 0;
-      overflow: hidden;
-      white-space: nowrap;
-      box-shadow: 0 0 15px #ffb600a0;
-      font-family: 'Orbitron', monospace, sans-serif;
-      font-weight: 700;
-      color: #ffd700;
-      text-shadow: 0 0 8px #ffbd1f, 0 0 18px #ff9e1f;
-      font-size: 1.1rem;
-      user-select: none;
-      border-top: 2px solid gold;
-      border-bottom: 2px solid gold;
-      margin: 10px 0 35px;
-      position: relative;
-      height: 38px;
-    }
-    .ticker-content {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker-scroll 360s linear infinite;
-      white-space: nowrap;
-    }
-    @keyframes ticker-scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* Hero Section */
-    .hero {
-      max-width: 800px;
-      margin: 0 auto 60px;
-      background: linear-gradient(135deg, rgba(255, 190, 46, 0.15), rgba(255, 140, 0, 0.1));
-      border-radius: 24px;
-      box-shadow:
-        0 4px 10px rgb(255 140 0 / 0.1),
-        0 0 40px rgb(255 140 0 / 0.1);
-      animation: fadeInUp 1.8s ease forwards;
-      opacity: 0;
-      transform: translateY(30px);
-      padding: 35px 30px;
-      text-align: center;
-      user-select: none;
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin: 0 0 18px;
-      color: #ffbb33;
-      text-shadow: 0 0 10px #ff7a00;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-    }
-    .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
-      font-weight: 500;
-      color: #f2c94c;
-      line-height: 1.4;
-      white-space: pre-line;
-    }
-    .countdown {
-      font-size: 2.1rem;
-      font-weight: 700;
-      margin-bottom: 40px;
-      color: #24a524;
-      text-shadow:
-        0 0 12px #3fc13f,
-        0 0 20px #24a524;
-      user-select: none;
-    }
-
-    /* Call to Action */
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: linear-gradient(130deg, #ff4e50, #f9d423);
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.7rem;
-      padding: 18px 56px;
-      border-radius: 50px;
-      box-shadow:
-        0 0 20px #ff704b,
-        0 5px 20px rgb(255 80 80 / 0.65);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      margin-bottom: 40px;
-      min-width: 220px;
-      text-align: center;
-    }
-    .cta:hover,
-    .cta:focus {
-      transform: scale(1.14);
-      box-shadow:
-        0 0 36px #ffae42,
-        0 10px 30px rgb(255 160 0 / 0.8);
-      outline: none;
-      cursor: pointer;
-    }
-
-    /* Buttons Container */
-    .btns {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-bottom: 60px;
-      user-select: none;
-    }
-    .btns a {
-      background: linear-gradient(90deg, #ffb800, #ff7a00);
-      padding: 14px 42px;
-      color: #191919;
-      font-weight: 700;
-      font-size: 1.2rem;
-      text-decoration: none;
-      border-radius: 30px;
-      box-shadow:
-        0 6px 14px rgba(255, 122, 0, 0.5);
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-width: 220px;
-      user-select: none;
-      letter-spacing: 0.02em;
-    }
-    .btns a:hover,
-    .btns a:focus {
-      background: linear-gradient(90deg, #ff7a00, #ffcb42);
-      color: #2a2a2a;
-      transform: scale(1.1);
-      box-shadow:
-        0 9px 22px rgb(255 160 0 / 0.85);
-      outline: none;
-      cursor: pointer;
-      letter-spacing: 0.04em;
-    }
-
-    /* Slider */
-    .slider {
-      max-width: 920px;
-      margin: 0 auto 50px;
-      border-radius: 25px;
-      overflow: hidden;
-      box-shadow: 0 10px 45px rgb(255 180 25 / 0.4);
-      background: rgba(255, 190, 46, 0.07);
-      position: relative;
-      user-select: none;
-    }
-    .slider img {
-      width: 100%;
-      display: none;
-      border-radius: 25px;
-      object-fit: cover;
-      transition: opacity 0.8s ease-in-out;
-      cursor: pointer;
-    }
-    .slider img.active {
-      display: block;
-      opacity: 1;
-    }
-
-    /* Info and FAQ Sections */
-    .info, .faq {
-      max-width: 900px;
-      margin: 30px auto 60px;
-      padding: 28px 34px;
-      border-radius: 22px;
-      background: rgba(255, 190, 46, 0.12);
-      box-shadow: 0 0 25px rgb(255 165 0 / 0.18);
-      user-select: none;
-      text-align: left;
-    }
-    .info h2, .faq h2 {
-      font-size: 2.4rem;
-      color: #ffbe2e;
-      margin-bottom: 16px;
-      text-shadow: 0 0 5px #ff9e00;
       font-weight: 700;
     }
-    .info p, .faq p {
-      font-size: 1.15rem;
-      color: #f0d886;
-      padding-bottom: 12px;
-      line-height: 1.45;
+    .message {
+      margin-top: 18px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      min-height: 1.5em;
+      user-select: none;
     }
-    .info p b, .faq p b {
-      color: #ffca2e;
+    .message.error {
+      color: #ff5555;
     }
-
-    /* Footer */
+    .message.success {
+      color: #a1ff78;
+    }
     footer {
-      background: #0e0e0e;
-      padding: 32px 15px;
-      color: #aaa;
-      font-size: 0.95rem;
-      border-top: 1px solid #331e00;
-      user-select: none;
+      background: #000;
+      color: #bbb;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 0.9em;
       text-align: center;
-      box-shadow: inset 0 4px 15px rgb(255 165 0 / 0.3);
-      letter-spacing: 0.05em;
-    }
-    footer b {
-      color: #ffc84d;
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      header {
-        font-size: 2.3rem;
-        padding: 22px 0;
-      }
-      nav a {
-        font-size: 1rem;
-        margin: 0 8px;
-        min-width: 75px;
-        padding: 8px 12px;
-      }
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      .countdown {
-        font-size: 1.75rem;
-      }
-      .cta {
-        font-size: 1.4rem;
-        padding: 14px 36px;
-        min-width: auto;
-      }
-      .btns {
-        gap: 16px;
-      }
-      .btns a {
-        font-size: 1rem;
-        padding: 12px 28px;
-        min-width: 160px;
-      }
-      .info, .faq {
-        padding: 24px 20px;
-        margin: 25px 12px 40px;
-      }
-    }
-    @media (max-width: 400px) {
-      .btns {
-        flex-direction: column;
-        gap: 18px;
-        align-items: center;
-      }
-      .btns a {
-        width: 100%;
-        max-width: 280px;
-        padding: 14px 0;
-        font-size: 1.1rem;
-      }
     }
   </style>
 </head>
 <body>
 
-<header>🎉 Welcome to TENDOLLARS 🎉</header>
-
 <nav>
-  <a href="index.html" tabindex="1">Home</a>
-  <a href="login.html" tabindex="2">Login</a>
-  <a href="dashboard.html" tabindex="3">Dashboard</a>
-  <a href="casino.html" tabindex="4">CASINO</a>
-  <a href="winners.html" tabindex="5">WINNERS🥇</a>
-  <a href="faq.html" tabindex="6">FAQ</a>
+  <a href="index.html">Home</a>
+  <a href="login.html">Login</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="casino.html">Casino</a>
+  <a href="winners.html">Winners</a>
+  <a href="faq.html">FAQ</a>
 </nav>
 
-<div class="ticker" aria-label="Latest Winners and Announcements">
-  <div class="ticker-content" aria-hidden="true">
-    welcome to TENDOLLARS-💥 Jane M. (254701****98) won KES 5,000! | 🎉 Peter K. (254799****23) just got Free Airtime! | 💎 Mary T. (254720****45) won a Brand New Phone! | 🚨 Next Mega Draw at 9PM Tonight! | 🔥 Brian O. (254711****77) won KES 1,000 Cash! | 🎁 Faith W. (254723****12) got 500MB Free Data! | 💎 Kevin L. (254798****99) won a Smartwatch! | 🎉 Alice N. (254726****54) won KES 2,500! | 💥 Samuel K. (254733****88) just bagged Free Airtime! | 🚨 Christine A. (254701****65) won a Brand New Phone! | 💎 Daniel M. (254710****32) got KES 10,000 JACKPOT! | 🎁 Lydia P. (254729****44) won KES 500! | 💥 Eric J. (254799****11) won a Bluetooth Speaker! | 🎉 Sharon W. (254721****07) won KES 3,000! | 💎 Michael O. (254725****76) just bagged Free Airtime! | 🎁 Grace K. (254712****84) won KES 1,500 Cash! | 🚨 Antony N. (254734****29) got Free Airtime! | 🎉 Brenda C. (254713****68) won KES 7,000! | 💥 Dennis M. (254715****93) just won a Tablet! | 💎 Caroline S. (254727****18) won KES 4,000! | 🎁 Victor L. (254719****21) got Free Airtime! | 🎉 Rose A. (254701****47) won KES 6,000! | 💥 Martin K. (254702****59) won KES 8,500! | 💎 Susan W. (254703****64) won a Brand New Phone! | 🚨 Patrick J. (254704****72) just got Free Airtime! | 🎁 Nancy O. (254705****89) won KES 2,000! | 💥 Felix N. (254706****35) bagged KES 12,000 JACKPOT! | 🎉 Diana P. (254707****53) won 1GB Free Data! | 💎 George M. (254708****62) won KES 9,000! | 🚨 Ruth K. (254709****14) just bagged Free Airtime! | 💥 James T. (254710****28) won KES 11,500! | 🎁 Stella N. (254711****74) got Free Airtime! | 🎉 Alex O. (254712****46) won KES 3,500! | 💎 Beatrice C. (254713****91) won KES 5,500! | 🚨 Collins M. (254714****82) won a New Phone! | 🎁 Janet A. (254715****33) got KES 4,800! | 💥 Moses K. (254716****67) just won Free Airtime! | 🎉 Catherine J. (254717****05) won KES 7,200! | 💎 Francis O. (254718****58) won KES 15,000! | 🚨 Pauline N. (254719****84) won KES 1,200! | 🎁 Alfred K. (254720****39) got Free Airtime! | 💥 Irene M. (254721****66) won KES 6,800! | 🎉 Stephen O. (254722****42) won KES 2,700! | 💎 Lucy A. (254723****71) won KES 13,000 JACKPOT! | 🚨 David P. (254724****94) got 2GB Free Data! | 💥 Ann W. (254725****17) won KES 4,600! | 🎁 Joshua K. (254726****38) won Free Airtime! | 🎉 Phyllis N. (254727****63) won KES 5,700! | 💎 Edwin O. (254728****22) just bagged KES 9,500! | 🚨 Janet M. (254729****49) won KES 2,200! | 🎁 Julius C. (254730****81) got Free Airtime! | 💥 Agnes N. (254731****06) won KES 8,000! | 🎉 Paul K. (254732****73) won KES 14,000! | 💎 Winnie A. (254733****52) won a Brand New Phone! | 🚨 Lawrence M. (254734****64) got Free Airtime! | 🎁 Dorcas O. (254735****85) won KES 3,800! | 💥 Chris J. (254736****29) won KES 10,200! | 🎉 Evelyn K. (254737****94) got Free Airtime! | 💎 Joseph N. (254738****19) won KES 7,600!
-  </div>
-</div>
+<h2>🔑 Login / Register</h2>
+<p>(Demo Only - No real accounts)</p>
 
-<h1>🔥 WIN BIG FOR JUST KES 10 🔥</h1>
-<p>🎫 Ticket Price: KES 10 - 1000<br>💰 Instant Cash &amp; Prizes<br>⏰ Mega Draw Closes <b>9PM Daily</b><br>💎 Pay via Till No: <b>3512126</b></p>
-<div class="countdown" id="countdown" aria-live="polite" aria-atomic="true">⏳ Time Left: --h --m --s</div>
+<form id="loginForm" onsubmit="return false;" aria-label="Login form">
+  <input type="text" id="phoneInput" placeholder="Phone Number (e.g. 254701234567)" required aria-required="true" aria-label="Phone Number">
+  <br>
+  <input type="password" id="passwordInput" placeholder="Password" required aria-required="true" aria-label="Password">
+  <br>
+  <button type="submit" aria-label="Login Button">Login</button>
+</form>
 
-<a href="login.html" class="cta" role="button" tabindex="7" aria-label="Play Now">🎫 Play Now</a>
-
-<div class="btns" role="group" aria-label="Contact Options">
-  <a href="https://wa.me/254769279076" target="_blank" rel="noopener" tabindex="8" aria-label="Chat with us on WhatsApp">💬 WhatsApp Us</a>
-  <a href="https://whatsapp.com/channel/0029Vb69iB82ER6il1M27U3I" target="_blank" rel="noopener" tabindex="9" aria-label="Follow our WhatsApp Channel">📢 Follow Our Channel</a>
-</div>
-
-<section class="slider" aria-label="Slideshow of pictures">
-  <img src="https://files.catbox.moe/idxxdc.jpg" alt="Exciting prize 1" class="active" />
-  <img src="https://files.catbox.moe/qpmuqq.jpg" alt="Exciting prize 2" />
-  <img src="https://files.catbox.moe/frtdg2.jpg" alt="Exciting prize 3" />
-</section>
-
-<section class="info" aria-labelledby="info-title">
-  <h2 id="info-title">🚨 Daily Raffles 🚨</h2>
-  <p>Airtime | Cash | Phones &amp; More!</p>
-  <p><b>How to Play:</b><br>
-     1️⃣ Send KES 10+ to Till No. <b>3512126</b><br>
-     2️⃣ Get your Ticket instantly<br>
-     3️⃣ Wait for the 9PM Draw 🎉</p>
-</section>
-
-<section class="faq" aria-labelledby="faq-title">
-  <h2 id="faq-title">❓ FAQ - How it Works</h2>
-  <p><b>Is it safe?</b> ✅ Yes! Payments are via secure MPESA Till Number.</p>
-  <p><b>When do I get results?</b> ✅ Winners are announced after 9PM daily.</p>
-  <p><b>What can I win?</b> ✅ Instant Cash, Airtime, and even Phones!</p>
-</section>
+<div id="message" class="message" aria-live="polite"></div>
 
 <footer>
   <p>© 2025 TENDOLLARS | All Rights Reserved</p>
@@ -423,33 +96,48 @@
 </footer>
 
 <script>
-  // Slider Logic
-  let currentIndex = 0;
-  const slides = document.querySelectorAll('.slider img');
+  const loginForm = document.getElementById('loginForm');
+  const phoneInput = document.getElementById('phoneInput');
+  const passwordInput = document.getElementById('passwordInput');
+  const messageEl = document.getElementById('message');
 
-  function showNextSlide() {
-    slides[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % slides.length;
-    slides[currentIndex].classList.add('active');
-  }
-  setInterval(showNextSlide, 4500);
+  loginForm.addEventListener('submit', async () => {
+    const phone = phoneInput.value.trim();
+    const password = passwordInput.value;
 
-  // Countdown timer to 9PM daily
-  function updateCountdown() {
-    const now = new Date();
-    const target = new Date();
-    target.setHours(21, 0, 0, 0);
-    if (now > target) target.setDate(target.getDate() + 1);
-    const diff = target - now;
+    if (!phone || !password) {
+      messageEl.textContent = '⚠️ Please enter both phone number and password.';
+      messageEl.className = 'message error';
+      return;
+    }
 
-    const hrs = Math.floor(diff / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+    messageEl.textContent = '🔄 Checking credentials...';
+    messageEl.className = 'message';
 
-    document.getElementById('countdown').innerText = `⏳ Time Left: ${hrs}h ${mins}m ${secs}s`;
-  }
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, password })
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        messageEl.textContent = '✅ Login successful! Redirecting...';
+        messageEl.className = 'message success';
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1200);
+      } else {
+        messageEl.textContent = `❌ ${result.error || 'Login failed'}`;
+        messageEl.className = 'message error';
+      }
+    } catch (e) {
+      messageEl.textContent = '⚠️ Unable to contact server. Please try later.';
+      messageEl.className = 'message error';
+    }
+  });
 </script>
 
 </body>
