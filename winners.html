@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TENDOLLARS Casino - Winners</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Orbitron', monospace, sans-serif;
+      background: radial-gradient(circle at top, #1a0026, #000000);
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px 20px;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    h1 {
+      color: #ffd700;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow:
+        0 0 10px #ffd700,
+        0 0 20px #ffaa00,
+        0 0 30px #ff6f00;
+      letter-spacing: 4px;
+      user-select: none;
+      text-transform: uppercase;
+    }
+    .winner-list {
+      max-width: 720px;
+      width: 100%;
+    }
+    .winner-card {
+      background: rgba(255, 255, 255, 0.07);
+      border: 2px solid #ffd700;
+      border-radius: 20px;
+      box-shadow:
+        0 0 15px #ffd700aa,
+        inset 0 0 15px #ffb700aa;
+      padding: 20px 30px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .winner-card:hover {
+      box-shadow:
+        0 0 25px #ffea00dd,
+        inset 0 0 20px #ffd500cc;
+      transform: scale(1.03);
+      background: rgba(255, 215, 0, 0.1);
+    }
+    .winner-name {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #fff9c4;
+      text-shadow: 0 0 6px #ffe066;
+      user-select: text;
+      flex: 2;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .winner-prize {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffaa00;
+      flex: 1;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .winner-date {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      flex: 1;
+      text-align: right;
+      white-space: nowrap;
+      user-select: text;
+    }
+    footer {
+      margin-top: auto;
+      padding: 20px 10px;
+      font-size: 0.9rem;
+      color: #bbb;
+      border-top: 2px solid #664400;
+      box-shadow: inset 0 5px 15px #ffb60088;
+      user-select: none;
+      letter-spacing: 0.04em;
+      width: 100%;
+      max-width: 720px;
+      text-align: center;
+    }
+    footer b {
+      color: gold;
+    }
+    @media (max-width: 600px) {
+      .winner-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .winner-name, .winner-prize, .winner-date {
+        text-align: left;
+        white-space: normal;
+      }
+      h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>🏆 TENDOLLARS Winners</h1>
+
+<div class="winner-list" role="list" aria-label="List of recent winners">
+  <div class="winner-card" role="listitem" tabindex="0">
+    <div class="winner-name" title="Player1">Player1</div>
+    <div class="winner-prize">KES 50,000</div>
+    <div class="winner-date" aria-label="Won on August 25, 2025">Aug 25, 2025</div>
+  </div>
+  
+  <div class="winner-card" role="listitem" tabindex="0">
+    <div class="winner-name" title="LuckyStar99">LuckyStar99</div>
+    <div class="winner-prize">KES 120,000</div>
+    <div class="winner-date" aria-label="Won on August 24, 2025">Aug 24, 2025</div>
+  </div>
+
+  <div class="winner-card" role="listitem" tabindex="0">
+    <div class="winner-name" title="JackpotKing">JackpotKing</div>
+    <div class="winner-prize">KES 75,000</div>
+    <div class="winner-date" aria-label="Won on August 23, 2025">Aug 23, 2025</div>
+  </div>
+
+  <div class="winner-card" role="listitem" tabindex="0">
+    <div class="winner-name" title="QueenBee">QueenBee</div>
+    <div class="winner-prize">KES 32,000</div>
+    <div class="winner-date" aria-label="Won on August 22, 2025">Aug 22, 2025</div>
+  </div>
+
+  <div class="winner-card" role="listitem" tabindex="0">
+    <div class="winner-name" title="SpinMaster">SpinMaster</div>
+    <div class="winner-prize">KES 100,000</div>
+    <div class="winner-date" aria-label="Won on August 21, 2025">Aug 21, 2025</div>
+  </div>
+</div>
+
+<footer role="contentinfo">
+  <p>© 2025 TENDOLLARS | All Rights Reserved</p>
+  <p>Want a website like this? DM the dev on WhatsApp <b>+254769279076</b></p>
+</footer>
+
+</body>
+</html>

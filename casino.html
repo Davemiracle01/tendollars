@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TENDOLLARS Casino</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Orbitron', monospace, sans-serif;
+    background: radial-gradient(circle at top, #1a0026, #000000);
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-attachment: fixed;
+    user-select: none;
+    position: relative;
+    padding-bottom: 80px;
+  }
+  #demoBanner {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #ff004ccc;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 8px 14px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px #ff004cdd;
+    z-index: 1100;
+    user-select: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Orbitron', monospace, sans-serif;
+  }
+  nav {
+    background: rgba(0, 0, 0, 0.75);
+    padding: 16px 0;
+    backdrop-filter: blur(12px);
+    border-bottom: 3px solid gold;
+    box-shadow: 0 3px 10px #d4af37aa;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav a {
+    color: gold;
+    margin: 0 18px;
+    font-weight: 700;
+    font-size: 1.18rem;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 4px #ffd70099;
+  }
+  nav a:hover,
+  nav a:focus {
+    color: #ff4081;
+    background: rgba(255, 64, 129, 0.15);
+    box-shadow: 0 0 15px #ff497fcc;
+    transform: scale(1.12);
+    outline: none;
+  }
+  h2 {
+    margin-top: 44px;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow:
+      0 0 10px #ffd700,
+      0 0 20px #ffaa00,
+      0 0 30px #ff6f00;
+    user-select: none;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+  /* Container for intro screen */
+  #introScreen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at center, #ffaf0033 0%, #1a0026ee 90%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+    color: #ffdc64;
+    text-align: center;
+    padding: 30px 30px;
+    user-select: none;
+  }
+  #introScreen h2 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    text-shadow:
+      0 0 30px #ffd700,
+      0 0 40px #ffaa00,
+      0 0 50px #ff6f00;
+  }
+  #introScreen p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px #ffbb33;
+  }
+  #introScreen button {
+    font-family: 'Orbitron', monospace, sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #fff;
+    background: linear-gradient(90deg, #ff0080, #ff8c00);
+    border: none;
+    border-radius: 40px;
+    padding: 18px 56px;
+    cursor: pointer;
+    box-shadow:
+      0 0 35px #ff46a2,
+      0 10px 30px rgba(255, 140, 0, 0.9);
+    transition: all 0.3s ease;
+    user-select: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  #introScreen button:hover {
+    transform: scale(1.12);
+    box-shadow:
+      0 0 55px #ff74b9,
+      0 12px 40px #ff9e00;
+    outline: none;
+  }
+
+  /* Games main container: vertical column with five games visible in cards */
+  .games-column {
+    max-width: 700px;
+    margin: 30px auto 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding: 0 15px;
+  }
+  /* Each game card styling */
+  .game-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 3px solid gold;
+    border-radius: 36px;
+    box-shadow:
+      0 0 60px #ffd700cc,
+      inset 0 0 40px #ffbf0077;
+    padding: 42px 36px;
+    backdrop-filter: blur(30px);
+    transition: box-shadow 0.4s ease;
+    user-select: none;
+    position: relative;
+  }
+  .game-card:hover {
+    box-shadow:
+      0 0 110px #ffd700ff,
+      inset 0 0 60px #ffba007f;
+  }
+  .game-card h3 {
+    font-size: 2.5rem;
+    color: #ffd700;
+    text-shadow:
+      0 0 15px #ffdd44,
+      0 0 30px #ffae00;
+    margin-bottom: 16px;
+    user-select: none;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  /* Explanation text brief */
+  .game-explanation {
+    font-size: 1.35rem;
+    color: #ffec9ccc;
+    user-select: none;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-shadow: 0 0 10px #ffbb33aa;
+  }
+  button.play-btn {
+    font-family: 'Orbitron', monospace, sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #fff;
+    background: linear-gradient(90deg, #ff0080, #ff8c00);
+    border: none;
+    border-radius: 40px;
+    padding: 16px 40px;
+    cursor: pointer;
+    box-shadow:
+      0 0 30px #ff46a2,
+      0 12px 28px rgba(255, 140, 0, 0.85);
+    transition: all 0.3s ease;
+    user-select: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  button.play-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+    color: #ccc;
+  }
+  button.play-btn:hover:not(:disabled),
+  button.play-btn:focus:not(:disabled) {
+    transform: scale(1.1);
+    box-shadow:
+      0 0 45px #ff74b9,
+      0 15px 38px #ff9e00;
+    outline: none;
+  }
+
+  /* Slot game elements */
+  #slot {
+    font-size: 5rem;
+    letter-spacing: 18px;
+    user-select: none;
+    color: #ffe066;
+    text-shadow:
+      0 0 20px #ffaa00,
+      0 0 45px #ff6f00;
+    margin: 24px 0 14px;
+    font-weight: 900;
+  }
+  #betContainer {
+    margin: 18px auto 0;
+    max-width: 220px;
+    text-align: center;
+  }
+  #betContainer label {
+    font-weight: 700;
+    margin-right: 8px;
+    font-size: 1rem;
+    color: #ffcc33;
+  }
+  #betAmount {
+    width: 85px;
+    font-family: 'Orbitron', monospace, sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid gold;
+    text-align: center;
+    color: #000;
+  }
+  #slotResult {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 20px;
+    min-height: 1.6em;
+    color: #ffda66;
+    text-shadow: 0 0 10px #ffa500;
+    user-select: none;
+  }
+  .balance {
+    margin-top: 18px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 0 0 12px #ffae00;
+    user-select: none;
+  }
+
+  /* Spin Wheel Container */
+  #wheelContainer {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    margin: 32px auto 18px;
+    filter: drop-shadow(0 0 12px #ffb700dd);
+    user-select: none;
+  }
+  #wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 12px solid gold;
+    overflow: hidden;
+    transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+    box-shadow:
+      0 0 50px #d4af3733,
+      inset 0 0 50px #ffbe0044;
+    background: conic-gradient(
+      #ff4757 0deg 45deg, #1e90ff 45deg 90deg, #2ed573 90deg 135deg, #ffa502 135deg 180deg,
+      #ff6b81 180deg 225deg, #3742fa 225deg 270deg, #7bed9f 270deg 315deg, #eccc68 315deg 360deg
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.2rem;
+    user-select: none;
+    position: relative;
+    text-shadow: 0 0 5px #00000099;
+  }
+  #pointer {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 26px solid transparent;
+    border-right: 26px solid transparent;
+    border-bottom: 40px solid #fff500;
+    filter: drop-shadow(0 0 8px #ffff00cc);
+    z-index: 1000;
+    user-select: none;
+  }
+
+  /* Game message styling */
+  .gameStatus {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 20px 0 12px;
+    color: #ffea00;
+    text-shadow: 0 0 8px #fff06f;
+    user-select: none;
+  }
+  .gameMessage {
+    font-size: 1.2rem;
+    font-weight: 700;
+    min-height: 1.7em;
+    color: #a1ff78;
+    text-shadow: 0 0 10px #7fff55;
+    user-select: none;
+    margin-top: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    h2 {
+      font-size: 2.1rem;
+      margin-top: 28px;
+    }
+    #slot {
+      font-size: 3.8rem;
+      letter-spacing: 14px;
+    }
+    #wheelContainer {
+      width: 280px;
+      height: 280px;
+    }
+    #pointer {
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 28px solid #fff500;
+      top: -22px;
+    }
+    .games-column {
+      max-width: 95vw;
+      gap: 36px;
+    }
+    .game-card {
+      padding: 32px 24px;
+    }
+    .game-card h3 {
+      font-size: 2rem;
+    }
+    .game-explanation {
+      font-size: 1.1rem;
+    }
+    button.play-btn {
+      font-size: 1.1rem;
+      padding: 14px 32px;
+    }
+    #betAmount {
+      width: 70px;
+      font-size: 1rem;
+    }
+  }
+  @media (max-width: 400px) {
+    #slot {
+      font-size: 2.8rem;
+      letter-spacing: 9px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="demoBanner" aria-hidden="true">Demo Under Development</div>
+
+<nav>
+  <a href="index.html" tabindex="1" aria-label="Home page">Home</a>
+  <a href="login.html" tabindex="2" aria-label="Login page">Login</a>
+  <a href="dashboard.html" tabindex="3" aria-label="Dashboard">Dashboard</a>
+  <a href="casino.html" tabindex="4" aria-label="Casino page">Casino</a>
+  <a href="winners.html" tabindex="5" aria-label="Winners page">Winners</a>
+  <a href="faq.html" tabindex="6" aria-label="FAQ page">FAQ</a>
+</nav>
+
+<h2>🎰 TENDOLLARS Casino</h2>
+
+<!-- Intro screen displayed before game selected. Hidden on start. -->
+<div id="introScreen" role="dialog" aria-modal="true" aria-labelledby="introGameTitle" aria-describedby="introGameDescription" hidden>
+  <h2 id="introGameTitle">Game Title</h2>
+  <p id="introGameDescription">Short description how it works.</p>
+  <button id="startGameBtn" aria-label="Start playing this game">Start</button>
+</div>
+
+<!-- Main games container: vertical column with 5 games -->
+<div class="games-column" role="main" aria-live="polite">
+
+  <!-- Slot Machine Game -->
+  <section class="game-card" id="game-slot" role="region" aria-label="Slot Machine Game">
+    <h3>Slot Machine</h3>
+    <p class="game-explanation">Spin for 3 matching symbols to win.</p>
+    <button class="play-btn" data-game="slot">Play Slot</button>
+  </section>
+
+  <!-- Spin Wheel Game -->
+  <section class="game-card" id="game-wheel" role="region" aria-label="Spin Wheel Game">
+    <h3>Spin Wheel</h3>
+    <p class="game-explanation">Spin the wheel, win prizes!</p>
+    <button class="play-btn" data-game="wheel">Play Wheel</button>
+  </section>
+
+  <!-- Roulette Game -->
+  <section class="game-card" id="game-roulette" role="region" aria-label="Roulette Game">
+    <h3>Roulette</h3>
+    <p class="game-explanation">Choose red or black, win double.</p>
+    <button class="play-btn" data-game="roulette">Play Roulette</button>
+  </section>
+
+  <!-- Blackjack Game -->
+  <section class="game-card" id="game-blackjack" role="region" aria-label="Blackjack Game">
+    <h3>Blackjack</h3>
+    <p class="game-explanation">Beat dealer by reaching 21.</p>
+    <button class="play-btn" data-game="blackjack">Play Blackjack</button>
+  </section>
+
+  <!-- Poker Game -->
+  <section class="game-card" id="game-poker" role="region" aria-label="Poker Game">
+    <h3>Poker</h3>
+    <p class="game-explanation">Get the best hand to win.</p>
+    <button class="play-btn" data-game="poker">Play Poker</button>
+  </section>
+
+</div>
+
+<footer role="contentinfo">
+  <p>© 2025 TENDOLLARS | All Rights Reserved</p>
+  <p>Want a website like this? DM the dev on WhatsApp <b>+254769279076</b></p>
+</footer>
+
+<script>
+  (() => {
+    // Elements references
+    const introScreen = document.getElementById('introScreen');
+    const introTitle = document.getElementById('introGameTitle');
+    const introDesc = document.getElementById('introGameDescription');
+    const startGameBtn = document.getElementById('startGameBtn');
+    const gamesColumn = document.querySelector('.games-column');
+
+    // Game state
+    let currentGame = null;
+
+    // Game descriptions and intro texts
+    const gameIntros = {
+      slot: {
+        title: 'Slot Machine',
+        description: 'Spin for 3 matching symbols to win big!',
+      },
+      wheel: {
+        title: 'Spin Wheel',
+        description: 'Spin the prize wheel and win amazing rewards!',
+      },
+      roulette: {
+        title: 'Roulette',
+        description: 'Pick red or black, double your bet if you win.',
+      },
+      blackjack: {
+        title: 'Blackjack',
+        description: 'Beat the dealer by reaching 21 or closest.',
+      },
+      poker: {
+        title: 'Poker',
+        description: 'Make the best hand and win the pot!',
+      }
+    };
+
+    // Utility for showing intro screen
+    function showIntro(gameKey) {
+      const intro = gameIntros[gameKey];
+      if (!intro) return;
+
+      currentGame = gameKey;
+      introTitle.textContent = intro.title;
+      introDesc.textContent = intro.description;
+      introScreen.hidden = false;
+
+      // Hide other games while intro is up
+      gamesColumn.style.filter = 'blur(5px)';
+      gamesColumn.setAttribute('aria-hidden', 'true');
+      startGameBtn.focus();
+    }
+
+    // Close intro screen and launch chosen game
+    startGameBtn.addEventListener('click', () => {
+      introScreen.hidden = true;
+      gamesColumn.style.filter = '';
+      gamesColumn.removeAttribute('aria-hidden');
+
+      if(currentGame){
+        runGame(currentGame);
+      }
+    });
+
+    // Attach click listeners to Play buttons on games cards
+    document.querySelectorAll('.play-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const gameKey = btn.dataset.game;
+        showIntro(gameKey);
+      });
+    });
+
+    // --- GAME LOGICS ---
+
+    // Clear games container when game is running to display game UI
+    function clearGameUI() {
+      gamesColumn.innerHTML = ''; // clear main container
+    }
+
+    // Slot Game
+    CONST_SYMBOLS = ['💎','🍒','🔔','🎲','💰'];
+
+    function slotComponent() {
+      const container = document.createElement('section');
+      container.style.textAlign = 'center';
+      container.setAttribute('role', 'application');
+      container.setAttribute('aria-label', 'Slot Machine Game');
+
+      const title = document.createElement('h3');
+      title.textContent = 'Slot Machine';
+      title.style.color = '#ffd700';
+      title.style.letterSpacing = '0.1em';
+      title.style.fontWeight = '900';
+      title.style.fontFamily = "'Orbitron', monospace, sans-serif";
+      title.style.fontSize = '2.6rem';
+      container.appendChild(title);
+
+      // Slot reel display
+      const slotDisplay = document.createElement('div');
+      slotDisplay.id = 'slot';
+      slotDisplay.textContent = '💎 🍒 🎲';
+      slotDisplay.style.fontSize = '6rem';
+      slotDisplay.style.letterSpacing = '18px';
+      slotDisplay.style.color = '#ffe066';
+      slotDisplay.style.textShadow = '0 0 35px #ffaa00, 0 0 60px #ff6f00';
+      slotDisplay.style.margin = '20px 0 14px';
+      slotDisplay.style.userSelect = 'none';
+      container.appendChild(slotDisplay);
+
+      // Bet input group
+      const betContainer = document.createElement('div');
+      betContainer.style.margin = '0 auto 14px';
+      betContainer.style.maxWidth = '260px';
+      betContainer.style.fontWeight = '700';
+      betContainer.style.color = '#ffcc33';
+      betContainer.style.fontSize = '1.15rem';
+      betContainer.style.userSelect = 'none';
+      betContainer.style.display = 'flex';
+      betContainer.style.justifyContent = 'center';
+      betContainer.style.alignItems = 'center';
+      betContainer.style.gap = '12px';
+
+      const betLabel = document.createElement('label');
+      betLabel.setAttribute('for', 'betAmount');
+      betLabel.textContent = 'Bet (KES):';
+      betContainer.appendChild(betLabel);
+
+      const betInput = document.createElement('input');
+      betInput.type = 'number';
+      betInput.id = 'betAmount';
+      betInput.min = '1';
+      betInput.max = '1000';
+      betInput.step = '1';
+      betInput.value = '10';
+      betInput.style.width = '80px';
+      betInput.style.fontFamily = "'Orbitron', monospace, sans-serif";
+      betInput.style.fontWeight = '700';
+      betInput.style.fontSize = '1.15rem';
+      betInput.style.borderRadius = '6px';
+      betInput.style.textAlign = 'center';
+      betInput.style.color = '#000';
+      betInput.style.border = '1px solid gold';
+      betContainer.appendChild(betInput);
+
+      container.appendChild(betContainer);
+
+      // Spin button
+      const spinBtn = document.createElement('button');
+      spinBtn.textContent = 'Spin Slot';
+      spinBtn.style.fontFamily = "'Orbitron', monospace, sans-serif";
+      spinBtn.style.fontWeight = '700';
+      spinBtn.style.fontSize = '1.35rem';
+      spinBtn.style.color = '#fff';
+      spinBtn.style.background = 'linear-gradient(90deg, #ff0080, #ff8c00)';
+      spinBtn.style.border = 'none';
+      spinBtn.style.borderRadius = '40px';
+      spinBtn.style.padding = '16px 48px';
+      spinBtn.style.cursor = 'pointer';
+      spinBtn.style.userSelect = 'none';
+      spinBtn.style.letterSpacing = '0.1em';
+      spinBtn.style.textTransform = 'uppercase';
+      container.appendChild(spinBtn);
+
+      // Result message
+      const resultMessage = document.createElement('p');
+      resultMessage.style.fontSize = '1.4rem';
+      resultMessage.style.fontWeight = '700';
+      resultMessage.style.marginTop = '18px';
+      resultMessage.style.minHeight = '1.6em';
+      resultMessage.style.color = '#ffda66';
+      resultMessage.style.textShadow = '0 0 10px #ffa500';
+      container.appendChild(resultMessage);
+
+      // Balance display
+      const balanceDisplay = document.createElement('p');
+      balanceDisplay.style.marginTop = '18px';
+      balanceDisplay.style.fontSize = '1.15rem';
+      balanceDisplay.style.fontWeight = '700';
+      balanceDisplay.style.color = '#ffd700';
+      balanceDisplay.style.textShadow = '0 0 12px #ffae00';
+      balanceDisplay.style.userSelect = 'none';
+      container.appendChild(balanceDisplay);
+
+      // Variables for slot
+      let balance = 1000;
+
+      function updateBalance() {
+        balanceDisplay.textContent = `Balance: KES ${balance}`;
+      }
+
+      function getRandomSymbol() {
+        return CONST_SYMBOLS[Math.floor(Math.random() * CONST_SYMBOLS.length)];
+      }
+
+      function spinAnimation() {
+        return new Promise(resolve => {
+          let count = 0;
+          const maxSpins = 20;
+          const interval = 70;
+          const spinInterval = setInterval(() => {
+            slotDisplay.textContent = `${getRandomSymbol()} ${getRandomSymbol()} ${getRandomSymbol()}`;
+            slotDisplay.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+            count++;
+            if (count >= maxSpins) {
+              clearInterval(spinInterval);
+              slotDisplay.style.transform = 'rotate(0deg)';
+              resolve();
+            }
+          }, interval);
+        });
+      }
+
+      function calculatePayout(res) {
+        if (res[0] === res[1] && res[1] === res[2]) return 5;
+        if (res[0] === res[1] || res[1] === res[2] || res[0] === res[2]) return 2;
+        return 0;
+      }
+
+      async function spinSlot() {
+        const bet = parseInt(betInput.value, 10);
+
+        if (isNaN(bet) || bet < 1) {
+          resultMessage.textContent = '❌ Minimum bet is KES 1!';
+          resultMessage.style.color = '#ff5555';
+          resultMessage.style.textShadow = '0 0 10px #ff3333';
+          return;
+        }
+        if (bet > balance) {
+          resultMessage.textContent = '❌ Insufficient balance!';
+          resultMessage.style.color = '#ff5555';
+          resultMessage.style.textShadow = '0 0 10px #ff3333';
+          return;
+        }
+
+        spinBtn.disabled = true;
+        resultMessage.textContent = '🎰 Spinning... Good luck!';
+        resultMessage.style.color = '#ffd700';
+        resultMessage.style.textShadow = '0 0 15px #ffae00';
+
+        balance -= bet;
+        updateBalance();
+
+        await spinAnimation();
+
+        const finalResult = [getRandomSymbol(), getRandomSymbol(), getRandomSymbol()];
+        slotDisplay.textContent = finalResult.join(' ');
+
+        const multiplier = calculatePayout(finalResult);
+        if (multiplier > 0) {
+          const payout = bet * multiplier;
+          balance += payout;
+          updateBalance();
+          resultMessage.textContent = `🎉 You won KES ${payout}! (${multiplier}x)`;
+          resultMessage.style.color = '#a1ff78';
+          resultMessage.style.textShadow = '0 0 25px #7fff55';
+        } else {
+          resultMessage.textContent = '😞 No match, try again!';
+          resultMessage.style.color = '#ff5555';
+          resultMessage.style.textShadow = '0 0 15px #ff3333';
+        }
+
+        spinBtn.disabled = false;
+      }
+
+      spinBtn.addEventListener('click', spinSlot);
+      updateBalance();
+
+      return container;
+    }
+
+    // Spin Wheel Game Component
+    function wheelComponent() {
+      const container = document.createElement('section');
+      container.style.textAlign = 'center';
+      container.setAttribute('role', 'application');
+      container.setAttribute('aria-label', 'Spin Wheel Game');
+
+      const title = document.createElement('h3');
+      title.textContent = 'Spin Wheel';
+      title.style.color = '#ffd700';
+      title.style.letterSpacing = '0.1em';
+      title.style.fontWeight = '900';
+      title.style.fontFamily = "'Orbitron', monospace, sans-serif";
+      title.style.fontSize = '2.6rem';
+      container.appendChild(title);
+
+      // Wheel container and pointer
+      const wheelContainer = document.createElement('div');
+      wheelContainer.id = 'wheelContainer';
+      wheelContainer.style.position = 'relative';
+      wheelContainer.style.width = '360px';
+      wheelContainer.style.height = '360px';
+      wheelContainer.style.margin = '30px auto 15px';
+      wheelContainer.style.filter = 'drop-shadow(0 0 15px #ffb700dd)';
+      wheelContainer.style.userSelect = 'none';
+
+      const pointer = document.createElement('div');
+      pointer.id = 'pointer';
+      pointer.style.position = 'absolute';
+      pointer.style.top = '-28px';
+      pointer.style.left = '50%';
+      pointer.style.transform = 'translateX(-50%)';
+      pointer.style.width = '0';
+      pointer.style.height = '0';
+      pointer.style.borderLeft = '26px solid transparent';
+      pointer.style.borderRight = '26px solid transparent';
+      pointer.style.borderBottom = '40px solid #fff500';
+      pointer.style.filter = 'drop-shadow(0 0 8px #ffff00cc)';
+      pointer.style.zIndex = '1000';
+      pointer.style.userSelect = 'none';
+
+      const wheel = document.createElement('div');
+      wheel.id = 'wheel';
+      wheel.style.width = '100%';
+      wheel.style.height = '100%';
+      wheel.style.borderRadius = '50%';
+      wheel.style.border = '12px solid gold';
+      wheel.style.overflow = 'hidden';
+      wheel.style.boxShadow = '0 0 50px #d4af3733, inset 0 0 50px #ffbe0044';
+      wheel.style.background = `conic-gradient(
+        #ff4757 0deg 45deg, #1e90ff 45deg 90deg, #2ed573 90deg 135deg, #ffa502 135deg 180deg,
+        #ff6b81 180deg 225deg, #3742fa 225deg 270deg, #7bed9f 270deg 315deg, #eccc68 315deg 360deg
+      )`;
+      wheel.style.display = 'flex';
+      wheel.style.alignItems = 'center';
+      wheel.style.justifyContent = 'center';
+      wheel.style.fontWeight = 'bold';
+      wheel.style.color = '#fff';
+      wheel.style.fontSize = '1.5rem';
+      wheel.style.textShadow = '0 0 5px #00000099';
+      wheel.style.transition = 'transform 4s cubic-bezier(0.33, 1, 0.68, 1)';
+      wheelContainer.appendChild(pointer);
+      wheelContainer.appendChild(wheel);
+
+      container.appendChild(wheelContainer);
+
+      const spinBtn = document.createElement('button');
+      spinBtn.textContent = 'Spin Wheel';
+      spinBtn.className = 'play-btn';
+      container.appendChild(spinBtn);
+
+      const wheelResult = document.createElement('p');
+      wheelResult.style.fontSize = '1.4rem';
+      wheelResult.style.fontWeight = '700';
+      wheelResult.style.marginTop = '16px';
+      wheelResult.style.minHeight = '2em';
+      wheelResult.style.color = '#a1ff78';
+      wheelResult.style.textShadow = '0 0 10px #7fff55';
+      container.appendChild(wheelResult);
+
+      const prizes = ['KES 10', 'Airtime', 'Phone', 'Try Again', 'KES 100', 'Cash', 'Bonus', 'Spin Again'];
+      const segmentCount = prizes.length;
+      const segmentSize = 360 / segmentCount;
+
+      function normalizeDegree(deg) {
+        return ((deg % 360) + 360) % 360;
+      }
+
+      spinBtn.addEventListener('click', () => {
+        spinBtn.disabled = true;
+        wheelResult.textContent = '';
+
+        const prizeIndex = Math.floor(Math.random() * segmentCount);
+        const rotations = 6 + Math.floor(Math.random() * 2); // 6 to 7 rotations for smooth effect
+        // To align pointer with center of segment and randomness inside segment:
+        const targetDegree = rotations * 360 + prizeIndex * segmentSize + segmentSize / 2;
+
+        // Reset transition before setting transform (to allow repeated spins)
+        wheel.style.transition = 'none';
+        wheel.style.transform = 'rotate(0deg)';
+
+        // Small timeout needed to apply no transition transform
+        setTimeout(() => {
+          wheel.style.transition = 'transform 4s cubic-bezier(0.33, 1, 0.68, 1)';
+          wheel.style.transform = `rotate(${targetDegree}deg)`;
+        }, 20);
+
+        // After animation ends (4s), show the prize
+        setTimeout(() => {
+          wheelResult.textContent = `🎁 You won: ${prizes[prizeIndex]}!`;
+          spinBtn.disabled = false;
+        }, 4100);
+      });
+
+      return container;
+    }
+
+    // Roulette Game Component (simple demo)
+    function rouletteComponent() {
+      const container = document.createElement('section');
+      container.style.textAlign = 'center';
+      container.setAttribute('role', 'application');
+      container.setAttribute('aria-label', 'Roulette Game');
+
+      const title = document.createElement('h3');
+      title.textContent = 'Roulette';
+      title.style.color = '#ffd700';
+      title.style.letterSpacing = '0.1em';
+      title.style.fontWeight = '900';
+      title.style.fontFamily = "'Orbitron', monospace, sans-serif";
+      title.style.fontSize = '2.6rem';
+      container.appendChild(title);
+
+      const explanation = document.createElement('p');
+      explanation.textContent = 'Choose Red or Black. Double your bet if you win.';
+      explanation.style.color = '#ffec9c';
+      explanation.style.fontWeight = '600';
+      explanation.style.marginBottom = '20px';
+      explanation.style.fontSize = '1.3rem';
+      explanation.style.userSelect = 'none';
+      container.appendChild(explanation);
+
+      // Color selection buttons
+      const chooseRedBtn = document.createElement('button');
+      chooseRedBtn.textContent = 'Bet on Red';
+      chooseRedBtn.className = 'play-btn';
+      chooseRedBtn.style.background = 'linear-gradient(90deg, #ff4d4d, #cc0000)';
+      chooseRedBtn.style.marginRight = '16px';
+
+      const chooseBlackBtn = document.createElement('button');
+      chooseBlackBtn.textContent = 'Bet on Black';
+      chooseBlackBtn.className = 'play-btn';
+      chooseBlackBtn.style.background = 'linear-gradient(90deg, #444444, #000000)';
+
+      container.appendChild(chooseRedBtn);
+      container.appendChild(chooseBlackBtn);
+
+      // Result message and balance
+      const resultMsg = document.createElement('p');
+      resultMsg.style.marginTop = '18px';
+      resultMsg.style.fontWeight = '700';
+      resultMsg.style.fontSize = '1.3rem';
+      resultMsg.style.minHeight = '2em';
+      resultMsg.style.color = '#a1ff78';
+      resultMsg.style.textShadow = '0 0 12px #7fff55';
+      container.appendChild(resultMsg);
+
+      const balanceDisplay = document.createElement('p');
+      balanceDisplay.style.marginTop = '18px';
+      balanceDisplay.style.fontWeight = '700';
+      balanceDisplay.style.fontSize = '1.15rem';
+      balanceDisplay.style.color = '#ffd700';
+      balanceDisplay.style.textShadow = '0 0 18px #ffbb00';
+      balanceDisplay.style.userSelect = 'none';
+      container.appendChild(balanceDisplay);
+
+      // Balance and bet fixed
+      let balance = 1000;
+      const bet = 50; // fixed bet for demo
+
+      function updateBalance() {
+        balanceDisplay.textContent = `Balance: KES ${balance} | Bet: KES ${bet}`;
+      }
+
+      // Roulette spin logic, win if chosen color matches random
+      function playRoulette(chosenColor) {
+        if (balance < bet) {
+          resultMsg.style.color = '#ff5555';
+          resultMsg.style.textShadow = '0 0 15px #ff3333';
+          resultMsg.textContent = '❌ Insufficient balance to bet!';
+          return;
+        }
+
+        // Disable buttons while 'spinning'
+        chooseRedBtn.disabled = true;
+        chooseBlackBtn.disabled = true;
+        resultMsg.style.color = '#ffd700';
+        resultMsg.style.textShadow = '0 0 15px #ffae00';
+        resultMsg.textContent = '🕹️ Spinning...';
+
+        setTimeout(() => {
+          balance -= bet;
+          const colors = ['red', 'black'];
+          const winningColor = colors[Math.floor(Math.random() * colors.length)];
+
+          if (winningColor === chosenColor) {
+            const winnings = bet * 2;
+            balance += winnings;
+            resultMsg.style.color = '#a1ff78';
+            resultMsg.style.textShadow = '0 0 25px #7fff55';
+            resultMsg.textContent = `🎉 You won KES ${winnings} (${winningColor.toUpperCase()})!`;
+          } else {
+            resultMsg.style.color = '#ff5555';
+            resultMsg.style.textShadow = '0 0 15px #ff3333';
+            resultMsg.textContent = `😞 You lost. It was ${winningColor.toUpperCase()}.`;
+          }
+
+          updateBalance();
+
+          chooseRedBtn.disabled = false;
+          chooseBlackBtn.disabled = false;
+        }, 2200);
+      }
+
+      chooseRedBtn.addEventListener('click', () => playRoulette('red'));
+      chooseBlackBtn.addEventListener('click', () => playRoulette('black'));
+      updateBalance();
+
+      return container;
+    }
+
+    // Blackjack stub demo component
+    function blackjackComponent() {
+      const container = document.createElement('section');
+      container.style.textAlign = 'center';
+      container.setAttribute('role', 'application');
+      container.setAttribute('aria-label', 'Blackjack Game');
+
+      const title = document.createElement('h3');
+      title.textContent = 'Blackjack';
+      title.style.color = '#ffd700';
+      title.style.letterSpacing = '0.1em';
+      title.style.fontWeight = '900';
+      title.style.fontFamily = "'Orbitron', monospace, sans-serif";
+      title.style.fontSize = '2.6rem';
+      container.appendChild(title);
+
+      const explanation = document.createElement('p');
+      explanation.textContent = 'Beat dealer by reaching 21.';
+      explanation.style.color = '#ffec9c';
+      explanation.style.fontWeight = '600';
+      explanation.style.marginBottom = '20px';
+      explanation.style.fontSize = '1.3rem';
+      explanation.style.userSelect = 'none';
+      container.appendChild(explanation);
+
+      const playBtn = document.createElement('button');
+      playBtn.textContent = 'Play Blackjack';
+      playBtn.className = 'play-btn';
+      container.appendChild(playBtn);
+
+      const message = document.createElement('p');
+      message.style.marginTop = '18px';
+      message.style.fontWeight = '700';
+      message.style.fontSize = '1.3rem';
+      message.style.minHeight = '2em';
+      message.style.color = '#a1ff78';
+      message.style.textShadow = '0 0 12px #7fff55';
+      container.appendChild(message);
+
+      playBtn.addEventListener('click', async () => {
+        playBtn.disabled = true;
+        message.style.color = '#ffd700';
+        message.style.textShadow = '0 0 15px #ffae00';
+        message.textContent = '🕹️ Playing Blackjack...';
+
+        await new Promise(r => setTimeout(r, 2500));
+
+        // Demo random result
+        const won = Math.random() > 0.5;
+        if (won) {
+          message.style.color = '#a1ff78';
+          message.style.textShadow = '0 0 20px #7fff55';
+          message.textContent = '🎉 You won Blackjack! (Demo)';
+        } else {
+          message.style.color = '#ff5555';
+          message.style.textShadow = '0 0 15px #ff3333';
+          message.textContent = '😞 You lost Blackjack. Try again.';
+        }
+
+        playBtn.disabled = false;
+      });
+
+      return container;
+    }
+
+    // Poker stub demo component
+    function pokerComponent() {
+      const container = document.createElement('section');
+      container.style.textAlign = 'center';
+      container.setAttribute('role', 'application');
+      container.setAttribute('aria-label', 'Poker Game');
+
+      const title = document.createElement('h3');
+      title.textContent = 'Poker';
+      title.style.color = '#ffd700';
+      title.style.letterSpacing = '0.1em';
+      title.style.fontWeight = '900';
+      title.style.fontFamily = "'Orbitron', monospace, sans-serif";
+      title.style.fontSize = '2.6rem';
+      container.appendChild(title);
+
+      const explanation = document.createElement('p');
+      explanation.textContent = 'Get the best hand to win!';
+      explanation.style.color = '#ffec9c';
+      explanation.style.fontWeight = '600';
+      explanation.style.marginBottom = '20px';
+      explanation.style.fontSize = '1.3rem';
+      explanation.style.userSelect = 'none';
+      container.appendChild(explanation);
+
+      const playBtn = document.createElement('button');
+      playBtn.textContent = 'Play Poker';
+      playBtn.className = 'play-btn';
+      container.appendChild(playBtn);
+
+      const message = document.createElement('p');
+      message.style.marginTop = '18px';
+      message.style.fontWeight = '700';
+      message.style.fontSize = '1.3rem';
+      message.style.minHeight = '2em';
+      message.style.color = '#a1ff78';
+      message.style.textShadow = '0 0 12px #7fff55';
+      container.appendChild(message);
+
+      playBtn.addEventListener('click', async () => {
+        playBtn.disabled = true;
+        message.style.color = '#ffd700';
+        message.style.textShadow = '0 0 15px #ffae00';
+        message.textContent = '🕹️ Playing Poker...';
+
+        await new Promise(r => setTimeout(r, 2500));
+
+        // Demo random result
+        const won = Math.random() > 0.5;
+        if (won) {
+          message.style.color = '#a1ff78';
+          message.style.textShadow = '0 0 20px #7fff55';
+          message.textContent = '🎉 You won Poker! (Demo)';
+        } else {
+          message.style.color = '#ff5555';
+          message.style.textShadow = '0 0 15px #ff3333';
+          message.textContent = '😞 You lost Poker. Try again.';
+        }
+
+        playBtn.disabled = false;
+      });
+
+      return container;
+    }
+
+    // Runner to display chosen game UI
+    function runGame(gameKey) {
+      clearGameUI();
+      switch (gameKey) {
+        case 'slot':
+          gamesColumn.appendChild(slotComponent());
+          break;
+        case 'wheel':
+          gamesColumn.appendChild(wheelComponent());
+          break;
+        case 'roulette':
+          gamesColumn.appendChild(rouletteComponent());
+          break;
+        case 'blackjack':
+          gamesColumn.appendChild(blackjackComponent());
+          break;
+        case 'poker':
+          gamesColumn.appendChild(pokerComponent());
+          break;
+        default:
+          gamesColumn.textContent = "Game not available.";
+      }
+    }
+
+  })();
+</script>
+
+</body>
+</html>
