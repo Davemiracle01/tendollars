@@ -192,7 +192,6 @@
       margin-bottom: 40px;
       min-width: 220px;
       text-align: center;
-      cursor: pointer;
     }
     .cta:hover,
     .cta:focus {
@@ -201,6 +200,7 @@
         0 0 36px #ffae42,
         0 10px 30px rgb(255 160 0 / 0.8);
       outline: none;
+      cursor: pointer;
     }
 
     /* Buttons Container */
@@ -239,6 +239,7 @@
       box-shadow:
         0 9px 22px rgb(255 160 0 / 0.85);
       outline: none;
+      cursor: pointer;
       letter-spacing: 0.04em;
     }
 
@@ -362,76 +363,6 @@
         font-size: 1.1rem;
       }
     }
-    /* Login form fake styles */
-    #fakeLogin {
-      max-width: 320px;
-      margin: 0 auto 50px;
-      padding: 30px 24px;
-      border-radius: 20px;
-      background: #222;
-      box-shadow: 0 0 20px #ffab2e88;
-      color: #ffd700;
-      font-weight: 700;
-      user-select: none;
-    }
-    #fakeLogin h2 {
-      margin-bottom: 24px;
-      font-size: 2.0rem;
-      text-transform: uppercase;
-      text-shadow: 0 0 6px #ff9a00;
-      letter-spacing: 3px;
-    }
-    #fakeLogin input[type="text"],
-    #fakeLogin input[type="password"] {
-      width: 100%;
-      padding: 14px 18px;
-      margin-bottom: 18px;
-      border-radius: 12px;
-      border: 2px solid #555;
-      background: #111;
-      color: #ffd700;
-      font-size: 1.1rem;
-      text-align: center;
-      outline: none;
-      letter-spacing: 1.5px;
-      transition: border-color 0.3s ease;
-    }
-    #fakeLogin input[type="text"]:focus,
-    #fakeLogin input[type="password"]:focus {
-      border-color: #ff9a00;
-      box-shadow: 0 0 10px #ffc000cc;
-    }
-    #fakeLogin button {
-      width: 100%;
-      padding: 16px 0;
-      border-radius: 30px;
-      border: none;
-      font-weight: 700;
-      font-size: 1.25rem;
-      background: linear-gradient(90deg, #ffb01c, #ff6f00);
-      color: #111;
-      cursor: pointer;
-      user-select: none;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 20px #ff8f00;
-    }
-    #fakeLogin button:hover,
-    #fakeLogin button:focus {
-      background: linear-gradient(90deg, #ffcf4a, #ff9a00);
-      outline: none;
-      transform: scale(1.05);
-      box-shadow: 0 0 28px #ffa920;
-    }
-    #loginMessage {
-      margin-top: 16px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #a1ff78;
-      text-shadow: 0 0 12px #7fff55;
-      min-height: 1.8em;
-    }
   </style>
 </head>
 <body>
@@ -458,15 +389,6 @@
 <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true">⏳ Time Left: --h --m --s</div>
 
 <a href="login.html" class="cta" role="button" tabindex="7" aria-label="Play Now">🎫 Play Now</a>
-
-<!-- Fake login lookalike below -->
-<section id="fakeLogin" aria-label="Fake Login Form">
-  <h2>LOGIN</h2>
-  <input type="text" id="fakePhone" placeholder="Phone Number" aria-label="Phone Number" />
-  <input type="password" id="fakePassword" placeholder="Password" aria-label="Password" />
-  <button id="fakeLoginBtn">Login</button>
-  <div id="loginMessage" aria-live="polite"></div>
-</section>
 
 <div class="btns" role="group" aria-label="Contact Options">
   <a href="https://wa.me/254769279076" target="_blank" rel="noopener" tabindex="8" aria-label="Chat with us on WhatsApp">💬 WhatsApp Us</a>
@@ -501,9 +423,10 @@
 </footer>
 
 <script>
-  // Slider logic
+  // Slider Logic
   let currentIndex = 0;
   const slides = document.querySelectorAll('.slider img');
+
   function showNextSlide() {
     slides[currentIndex].classList.remove('active');
     currentIndex = (currentIndex + 1) % slides.length;
@@ -511,7 +434,7 @@
   }
   setInterval(showNextSlide, 4500);
 
-  // Countdown to 9PM daily
+  // Countdown timer to 9PM daily
   function updateCountdown() {
     const now = new Date();
     const target = new Date();
@@ -527,33 +450,6 @@
   }
   setInterval(updateCountdown, 1000);
   updateCountdown();
-
-  // Fake login logic - Logs in no matter what is entered
-  const fakeLoginBtn = document.getElementById('fakeLoginBtn');
-  const loginMessage = document.getElementById('loginMessage');
-
-  fakeLoginBtn.addEventListener('click', () => {
-    const phone = document.getElementById('fakePhone').value.trim();
-    const password = document.getElementById('fakePassword').value.trim();
-
-    if(!phone || !password){
-      loginMessage.style.color = 'red';
-      loginMessage.textContent = 'Please enter phone number and password.';
-      return;
-    }
-
-    loginMessage.style.color = '#a1ff78';
-    loginMessage.textContent = 'Logging in...';
-
-    // Fake delay
-    setTimeout(() => {
-      loginMessage.textContent = 'Login successful! Redirecting...';
-      // Redirect to example dashboard (replace as needed)
-      setTimeout(() => {
-        window.location.href = 'dashboard.html';
-      }, 1500);
-    }, 1500);
-  });
 </script>
 
 </body>
