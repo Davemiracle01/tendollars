@@ -1,379 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TENDOLLARS Casino</title>
-<!-- Use correct Google Fonts link -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
-<style>
-  /* Reset and basic styling */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Orbitron', monospace, sans-serif;
-    background: radial-gradient(circle at top, #1a0026, #000000);
-    color: #fff;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-attachment: fixed;
-    user-select: none;
-    position: relative;
-    padding-bottom: 80px;
-  }
-  #demoBanner {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: #ff004ccc;
-    color: white;
-    font-weight: 700;
-    font-size: 1rem;
-    padding: 8px 14px;
-    border-radius: 12px;
-    box-shadow: 0 0 12px #ff004cdd;
-    z-index: 1100;
-    user-select: none;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-family: 'Orbitron', monospace, sans-serif;
-  }
-  nav {
-    background: rgba(0, 0, 0, 0.75);
-    padding: 16px 0;
-    backdrop-filter: blur(12px);
-    border-bottom: 3px solid gold;
-    box-shadow: 0 3px 10px #d4af37aa;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  nav a {
-    color: gold;
-    margin: 0 18px;
-    font-weight: 700;
-    font-size: 1.18rem;
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 9999px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 4px #ffd70099;
-  }
-  nav a:hover,
-  nav a:focus {
-    color: #ff4081;
-    background: rgba(255, 64, 129, 0.15);
-    box-shadow: 0 0 15px #ff497fcc;
-    transform: scale(1.12);
-    outline: none;
-  }
-  h2 {
-    margin-top: 44px;
-    font-size: 3rem;
-    font-weight: 700;
-    color: #ffd700;
-    text-shadow:
-      0 0 10px #ffd700,
-      0 0 20px #ffaa00,
-      0 0 30px #ff6f00;
-    user-select: none;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-  }
-  .games-column {
-    max-width: 700px;
-    margin: 30px auto 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-    padding: 0 15px;
-  }
-  .game-card {
-    background: rgba(255, 255, 255, 0.07);
-    border: 3px solid gold;
-    border-radius: 36px;
-    box-shadow:
-      0 0 60px #ffd700cc,
-      inset 0 0 40px #ffbf0077;
-    padding: 42px 36px;
-    backdrop-filter: blur(30px);
-    transition: box-shadow 0.4s ease;
-    user-select: none;
-    position: relative;
-  }
-  .game-card:hover {
-    box-shadow:
-      0 0 110px #ffd700ff,
-      inset 0 0 60px #ffba007f;
-  }
-  .game-card h3 {
-    font-size: 2.5rem;
-    color: #ffd700;
-    text-shadow:
-      0 0 15px #ffdd44,
-      0 0 30px #ffae00;
-    margin-bottom: 16px;
-    user-select: none;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .game-explanation {
-    font-size: 1.35rem;
-    color: #ffec9ccc;
-    user-select: none;
-    margin-bottom: 20px;
-    font-weight: 600;
-    text-shadow: 0 0 10px #ffbb33aa;
-  }
-  button.play-btn {
-    font-family: 'Orbitron', monospace, sans-serif;
-    font-weight: 700;
-    font-size: 1.35rem;
-    color: #fff;
-    background: linear-gradient(90deg, #ff0080, #ff8c00);
-    border: none;
-    border-radius: 40px;
-    padding: 16px 40px;
-    cursor: pointer;
-    box-shadow:
-      0 0 30px #ff46a2,
-      0 12px 28px rgba(255, 140, 0, 0.85);
-    transition: all 0.3s ease;
-    user-select: none;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  button.play-btn:hover:not(:disabled),
-  button.play-btn:focus:not(:disabled) {
-    transform: scale(1.1);
-    box-shadow:
-      0 0 45px #ff74b9,
-      0 15px 38px #ff9e00;
-    outline: none;
-  }
-  button.play-btn:disabled {
-    background: #666;
-    cursor: not-allowed;
-    box-shadow: none;
-    color: #ccc;
-  }
-  /* Slot game specific styles */
-  #slot {
-    font-size: 5rem;
-    letter-spacing: 18px;
-    user-select: none;
-    color: #ffe066;
-    text-shadow:
-      0 0 20px #ffaa00,
-      0 0 45px #ff6f00;
-    margin: 24px 0 14px;
-    font-weight: 900;
-  }
-  #slotResult {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-top: 20px;
-    min-height: 1.6em;
-    color: #ffda66;
-    text-shadow: 0 0 10px #ffa500;
-    user-select: none;
-  }
-  .balance {
-    margin-top: 18px;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #ffd700;
-    text-shadow: 0 0 12px #ffae00;
-    user-select: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 700px) {
-    h2 {
-      font-size: 2.1rem;
-      margin-top: 28px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TENDOLLARS Casino</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-gradient-start: #1a0026;
+      --bg-gradient-end: #000000;
+      --gold: #ffd700;
+      --fade-gold: #ffd700cc;
+      --btn-gradient: linear-gradient(90deg, #ff0080, #ff8c00);
     }
-    #slot {
-      font-size: 3.8rem;
-      letter-spacing: 14px;
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Orbitron', monospace, sans-serif;
+      background: radial-gradient(circle at top, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background-attachment: fixed;
+      user-select: none;
+      position: relative;
+      padding-bottom: 80px;
+    }
+    #demoBanner {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #ff004ccc;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 8px 14px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #ff004cdd;
+      z-index: 1100;
+      user-select: none;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    nav {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 16px 0;
+      backdrop-filter: blur(12px);
+      border-bottom: 3px solid var(--gold);
+      box-shadow: 0 3px 10px #d4af37aa;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: var(--gold);
+      margin: 0 18px;
+      font-weight: 700;
+      font-size: 1.18rem;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 4px #ffd70099;
+    }
+    nav a:hover, nav a:focus {
+      color: #ff4081;
+      background: rgba(255, 64, 129, 0.15);
+      box-shadow: 0 0 15px #ff497fcc;
+      transform: scale(1.12);
+      outline: none;
+    }
+    h2 {
+      margin-top: 44px;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow:
+        0 0 10px var(--gold),
+        0 0 20px #ffaa00,
+        0 0 30px #ff6f00;
+      user-select: none;
+      letter-spacing: 4px;
+      text-transform: uppercase;
     }
     .games-column {
-      max-width: 95vw;
-      gap: 36px;
+      max-width: 700px;
+      margin: 30px auto 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      padding: 0 15px;
     }
     .game-card {
-      padding: 32px 24px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 3px solid var(--gold);
+      border-radius: 36px;
+      box-shadow:
+        0 0 60px #ffd700cc,
+        inset 0 0 40px #ffbf0077;
+      padding: 42px 36px;
+      backdrop-filter: blur(30px);
+      transition: box-shadow 0.4s ease;
+      position: relative;
+    }
+    .game-card:hover {
+      box-shadow:
+        0 0 110px #ffd700ff,
+        inset 0 0 60px #ffba007f;
     }
     .game-card h3 {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      color: var(--gold);
+      text-shadow:
+        0 0 15px #ffdd44,
+        0 0 30px #ffae00;
+      margin-bottom: 16px;
+      user-select: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
     .game-explanation {
-      font-size: 1.1rem;
+      font-size: 1.35rem;
+      color: #ffec9ccc;
+      user-select: none;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-shadow: 0 0 10px #ffbb33aa;
+    }
+    .controls {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .controls label {
+      font-size: 1.15rem;
+      font-weight: 600;
+      user-select: none;
+    }
+    input[type="number"] {
+      width: 80px;
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      text-align: center;
+      font-family: inherit;
     }
     button.play-btn {
-      font-size: 1.1rem;
-      padding: 14px 32px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: #fff;
+      background: var(--btn-gradient);
+      border: none;
+      border-radius: 40px;
+      padding: 16px 40px;
+      cursor: pointer;
+      box-shadow:
+        0 0 30px #ff46a2,
+        0 12px 28px rgba(255, 140, 0, 0.85);
+      transition: all 0.3s ease;
+      user-select: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
-  }
-  @media (max-width: 400px) {
+    button.play-btn:hover:not(:disabled), button.play-btn:focus:not(:disabled) {
+      transform: scale(1.1);
+      box-shadow: 0 0 45px #ff74b9, 0 15px 38px #ff9e00;
+      outline: none;
+    }
+    button.play-btn.disabled, button.play-btn:disabled {
+      background: #666 !important;
+      cursor: not-allowed;
+      box-shadow: none !important;
+      color: #ccc;
+      opacity: 0.7;
+    }
     #slot {
-      font-size: 2.8rem;
-      letter-spacing: 9px;
+      font-size: 5rem;
+      letter-spacing: 18px;
+      user-select: none;
+      color: #ffe066;
+      text-shadow:
+        0 0 20px #ffaa00,
+        0 0 45px #ff6f00;
+      margin: 24px 0 14px;
+      font-weight: 900;
     }
-  }
-</style>
+    #slotResult {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 20px;
+      min-height: 1.6em;
+      color: #ffda66;
+      text-shadow: 0 0 10px #ffa500;
+      user-select: none;
+    }
+    .balance {
+      margin-top: 18px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 0 12px #ffae00;
+      user-select: none;
+    }
+    footer {
+      margin-top: auto;
+      padding: 20px 0;
+    }
+    footer p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      h2 { font-size: 2.1rem; margin-top: 28px; }
+      #slot { font-size: 3.8rem; letter-spacing: 14px; }
+      .games-column { max-width: 95vw; gap: 36px; }
+      .game-card { padding: 32px 24px; }
+      .game-card h3 { font-size: 2rem; }
+      .game-explanation { font-size: 1.1rem; }
+      button.play-btn { font-size: 1.1rem; padding: 14px 32px; }
+    }
+    @media (max-width: 400px) {
+      #slot { font-size: 2.8rem; letter-spacing: 9px; }
+    }
+  </style>
 </head>
 <body>
+  <div id="demoBanner" aria-hidden="true">Demo Under Development</div>
+  <nav>
+    <a href="index.html" tabindex="1" aria-label="Home">Home</a>
+    <a href="login.html" tabindex="2" aria-label="Login">Login</a>
+    <a href="dashboard.html" tabindex="3" aria-label="Dashboard">Dashboard</a>
+    <a href="casino.html" tabindex="4" aria-label="Casino">Casino</a>
+    <a href="winners.html" tabindex="5" aria-label="Winners">Winners</a>
+    <a href="faq.html" tabindex="6" aria-label="FAQ">FAQ</a>
+  </nav>
 
-<div id="demoBanner" aria-hidden="true">Demo Under Development</div>
+  <h2>🎰 TENDOLLARS Casino</h2>
 
-<nav>
-  <a href="index.html" tabindex="1" aria-label="Home page">Home</a>
-  <a href="login.html" tabindex="2" aria-label="Login page">Login</a>
-  <a href="dashboard.html" tabindex="3" aria-label="Dashboard">Dashboard</a>
-  <a href="casino.html" tabindex="4" aria-label="Casino page">Casino</a>
-  <a href="winners.html" tabindex="5" aria-label="Winners page">Winners</a>
-  <a href="faq.html" tabindex="6" aria-label="FAQ page">FAQ</a>
-</nav>
+  <div class="games-column" role="main" aria-live="polite">
+    <section class="game-card" role="region" aria-labelledby="game-slot-title">
+      <h3 id="game-slot-title">Slot Machine</h3>
+      <p class="game-explanation">Spin for 3 matching symbols to win.</p>
 
-<h2>🎰 TENDOLLARS Casino</h2>
+      <div class="controls">
+        <label for="betAmount">Bet Amount (KES):</label>
+        <input type="number" id="betAmount" value="10" min="1" max="1000" aria-label="Bet Amount in Kenyan Shillings" />
+        <button class="play-btn" id="playSlotBtn">Play Slot</button>
+        <button class="play-btn disabled" id="spinBtn" disabled>Spin Slot</button>
+      </div>
 
-<div class="games-column" role="main" aria-live="polite">
+      <div id="slot" aria-live="polite" aria-atomic="true">💎 🍒 🔔</div>
+      <div id="slotResult" role="alert"></div>
+      <div class="balance" id="balanceDisplay">Balance: KES 1000</div>
+    </section>
+  </div>
 
-  <section class="game-card" id="game-slot" role="region" aria-label="Slot Machine Game">
-    <h3>Slot Machine</h3>
-    <p class="game-explanation">Spin for 3 matching symbols to win.</p>
-    <button class="play-btn" id="playSlotBtn">Play Slot</button>
+  <footer role="contentinfo">
+    <p>© 2025 TENDOLLARS | All Rights Reserved</p>
+    <p>Want a website like this? DM the dev on WhatsApp <strong>+254769279076</strong></p>
+  </footer>
 
-    <div id="slot" aria-live="polite" aria-atomic="true">💎 🍒 🔔</div>
-    <input type="number" id="betAmount" value="10" min="1" max="1000" aria-label="Bet Amount in KES" />
-    <button id="spinBtn" disabled>Spin Slot</button>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slotDisplay = document.getElementById('slot');
+      const spinBtn = document.getElementById('spinBtn');
+      const playSlotBtn = document.getElementById('playSlotBtn');
+      const betInput = document.getElementById('betAmount');
+      const resultMessage = document.getElementById('slotResult');
+      const balanceDisplay = document.getElementById('balanceDisplay');
 
-    <div id="slotResult" role="alert"></div>
-    <div class="balance" id="balanceDisplay">Balance: KES 1000</div>
-  </section>
+      const SYMBOLS = ['💎', '🍒', '🔔', '🎲', '💰'];
+      let balance = 1000;
 
-</div>
-
-<footer role="contentinfo">
-  <p>© 2025 TENDOLLARS | All Rights Reserved</p>
-  <p>Want a website like this? DM the dev on WhatsApp <b>+254769279076</b></p>
-</footer>
-
-<script>
-  (() => {
-
-    const slotDisplay = document.getElementById('slot');
-    const spinBtn = document.getElementById('spinBtn');
-    const playSlotBtn = document.getElementById('playSlotBtn');
-    const betInput = document.getElementById('betAmount');
-    const resultMessage = document.getElementById('slotResult');
-    const balanceDisplay = document.getElementById('balanceDisplay');
-
-    const SYMBOLS = ['💎', '🍒', '🔔', '🎲', '💰'];
-    let balance = 1000;
-
-    // Init state
-    spinBtn.disabled = true;
-
-    function updateBalance() {
-      balanceDisplay.textContent = Balance: KES ${balance};
-    }
-
-    function getRandomSymbol() {
-      return SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-    }
-
-    function getSpinResult() {
-      return [getRandomSymbol(), getRandomSymbol(), getRandomSymbol()];
-    }
-
-    function calculatePayout(result) {
-      if (result[0] === result[1] && result[1] === result[2]) {
-        return 5; // Jackpot 5x
+      function updateBalance() {
+        balanceDisplay.textContent = `Balance: KES ${balance}`;
       }
-      if (result[0] === result[1] || result[1] === result[2] || result[0] === result[2]) {
-        return 2; // Partial payout 2x
-      }
-      return 0;
-    }
 
-    async function spinAnimation() {
-      return new Promise(resolve => {
-        let count = 0;
-        const maxSpins = 20;
-        const interval = 70;
-        const spinner = setInterval(() => {
-          slotDisplay.textContent = ${getRandomSymbol()} ${getRandomSymbol()} ${getRandomSymbol()};
-          slotDisplay.style.transform = rotate(${(Math.random() * 20) - 10}deg);
-          count++;
-          if (count >= maxSpins) {
-            clearInterval(spinner);
-            slotDisplay.style.transform = 'rotate(0deg)';
-            resolve();
-          }
-        }, interval);
+      function getRandomSymbol() {
+        return SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+      }
+
+      function calculatePayout(result) {
+        if (result[0] === result[1] && result[1] === result[2]) return 5;
+        if (new Set(result).size === 2) return 2;
+        return 0;
+      }
+
+      function disableControls(disabled = true) {
+        spinBtn.disabled = disabled;
+        playSlotBtn.disabled = disabled;
+        spinBtn.classList.toggle('disabled', disabled);
+      }
+
+      async function spinAnimation() {
+        return new Promise(resolve => {
+          let count = 0;
+          const maxSpins = 20;
+          const interval = 70;
+          const spinner = setInterval(() => {
+            slotDisplay.textContent = `${getRandomSymbol()} ${getRandomSymbol()} ${getRandomSymbol()}`;
+            slotDisplay.style.transform = `rotate(${(Math.random() * 20) - 10}deg)`;
+            count++;
+            if (count >= maxSpins) {
+              clearInterval(spinner);
+              slotDisplay.style.transform = 'rotate(0deg)';
+              resolve();
+            }
+          }, interval);
+        });
+      }
+
+      async function spinSlot() {
+        const bet = parseInt(betInput.value, 10);
+        if (isNaN(bet) || bet < 1) {
+          resultMessage.textContent = '❌ Minimum bet is KES 1!';
+          resultMessage.style.color = '#ff5555';
+          return;
+        }
+        if (bet > balance) {
+          resultMessage.textContent = '❌ Insufficient balance!';
+          resultMessage.style.color = '#ff5555';
+          return;
+        }
+
+        disableControls(true);
+        resultMessage.textContent = '🎰 Spinning... Good luck!';
+        resultMessage.style.color = '#ffd700';
+
+        balance -= bet;
+        updateBalance();
+
+        await spinAnimation();
+
+        const result = [getRandomSymbol(), getRandomSymbol(), getRandomSymbol()];
+        slotDisplay.textContent = result.join(' ');
+
+        const multiplier = calculatePayout(result);
+        const payout = bet * multiplier;
+
+        if (payout > 0) {
+          resultMessage.textContent = `🎉 You won KES ${payout}!`;
+          resultMessage.style.color = '#a1ff78';
+          balance += payout;
+        } else {
+          resultMessage.textContent = '😞 No win this time, try again!';
+          resultMessage.style.color = '#ff5555';
+        }
+
+        updateBalance();
+        disableControls(false);
+      }
+
+      playSlotBtn.addEventListener('click', () => {
+        spinBtn.disabled = false;
+        playSlotBtn.disabled = true;
+        playSlotBtn.classList.add('disabled');
+        resultMessage.textContent = '';
       });
-    }
 
-    async function spinSlot() {
-      const bet = parseInt(betInput.value, 10);
-      if (isNaN(bet) || bet < 1) {
-        resultMessage.textContent = '❌ Minimum bet is KES 1!';
-        resultMessage.style.color = '#ff5555';
-        return;
-      }
-      if (bet > balance) {
-        resultMessage.textContent = '❌ Insufficient balance!';
-        resultMessage.style.color = '#ff5555';
-        return;
-      }
-      spinBtn.disabled = true;
-      resultMessage.textContent = '🎰 Spinning... Good luck!';
-      resultMessage.style.color = '#ffd700';
-
-      balance -= bet;
+      spinBtn.addEventListener('click', spinSlot);
       updateBalance();
-
-      await spinAnimation();
-
-      const result = getSpinResult();
-      slotDisplay.textContent = result.join(' ');
-
-      const payoutMultiplier = calculatePayout(result);
-      const payout = bet * payoutMultiplier;
-
-      if (payout > 0) {
-        resultMessage.textContent = 🎉 You won KES ${payout}!;
-        resultMessage.style.color = '#a1ff78';
-        balance += payout;
-      } else {
-        resultMessage.textContent = '😞 No win this time, try again!';
-        resultMessage.style.color = '#ff5555';
-      }
-      updateBalance();
-
-      spinBtn.disabled = false;
-    }
-
-    // Handle Play Slot button
-    playSlotBtn.addEventListener('click', () => {
-      spinBtn.disabled = false;
-      resultMessage.textContent = '';
     });
-
-    // Handle Spin Slot button
-    spinBtn.addEventListener('click', spinSlot);
-
-    updateBalance();
-
-  })();
-</script>
-
+  </script>
 </body>
 </html>
